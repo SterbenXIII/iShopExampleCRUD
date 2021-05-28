@@ -1,13 +1,15 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyDSbuCNJ71iPEHc8mabdPZikJVZ7hobb9M",
-    authDomain: "shopapp-c6bae.firebaseapp.com",
-    projectId: "shopapp-c6bae",
-    storageBucket: "shopapp-c6bae.appspot.com",
-    messagingSenderId: "116855850513",
-    appId: "1:116855850513:web:24ff6d58a222d5bd0b53b0",
-    measurementId: "G-74K7PL0RXW"
+    apiKey: "AIzaSyDrS0-unmXFVqvXAfO8itR_HvW2zZRcYZc",
+    authDomain: "reactchat-3d82f.firebaseapp.com",
+    databaseURL: "https://reactchat-3d82f.firebaseio.com",
+    projectId: "reactchat-3d82f",
+    storageBucket: "reactchat-3d82f.appspot.com",
+    messagingSenderId: "306384535474",
+    appId: "1:306384535474:web:62cfd5d70852a4f0536eab",
+    measurementId: "G-HFJH34TBNE"
+
 
   }
 };
