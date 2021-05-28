@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:15
-    working_directory: ~/gatsby-site
+    working_directory: ~/angularFirebase
     steps:
       - checkout
       - restore_cache:
