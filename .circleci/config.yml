@@ -8,7 +8,7 @@ jobs:
     filters:
       branches:
         only:
-         - main
+          - main
 
     docker:
       - image: circleci/node:15
@@ -32,19 +32,10 @@ jobs:
       - run:
           name: Angular Build
           command: npm run build
-      - run:
-          name: Firebase Deploy
-          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
-
-workflows:
-   version: 2
-   nightly:
-     triggers:
-       - schedule:
-           filters:
-             branches:
-               only:
-                 - main
-     jobs:
-       - build
-
+      # - run:
+      #     name: Firebase Deploy
+      #     command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+      - run: |
+          if ["$CIRCLE_BRANCH" = "main"]; then
+            name: Firebase Deploy
+            command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
