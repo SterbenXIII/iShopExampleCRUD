@@ -4,7 +4,8 @@ version: 2
     branches:
       - main
 jobs:
-  build:
+  build_and_deploy:
+    if: "github.repository"
     docker:
       - image: circleci/node:15
     working_directory: ~/angularFirebase
