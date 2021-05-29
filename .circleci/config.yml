@@ -4,14 +4,13 @@ version: 2
     branches:
       - main
 jobs:
-  build_and_deploy:
+  build:
     if: "github.repository"
     docker:
       - image: circleci/node:15
     working_directory: ~/angularFirebase
     filters:
       branches:
-        only:
           - main
     steps:
       - checkout
@@ -32,5 +31,6 @@ jobs:
           name: Angular Build
           command: npm run build
       - run:
+
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
