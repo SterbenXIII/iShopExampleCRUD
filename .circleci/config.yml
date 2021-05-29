@@ -5,14 +5,15 @@ version: 2
       - main
 jobs:
   build:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    docker:
-      - image: circleci/node:15
-    working_directory: ~/angularFirebase
     filters:
       branches:
         only:
-           -main
+         - develop
+
+    docker:
+      - image: circleci/node:15
+    working_directory: ~/angularFirebase
+
     steps:
       - checkout
       - restore_cache:
