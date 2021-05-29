@@ -1,4 +1,8 @@
 version: 2
+"on":
+  push:
+    branches:
+      - main
 jobs:
   build:
     docker:
@@ -8,9 +12,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            # Find a cache corresponding to this specific package-lock.json
             - v1-npm-deps-{{ checksum "package-lock.json" }}
-            # Fallback cache to be used
+
             - v1-npm-deps-
       - run:
           name: Install Dependencies
