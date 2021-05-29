@@ -5,15 +5,13 @@ version: 2
       - main
 jobs:
   build:
-    if: "github.repository"
     docker:
       - image: circleci/node:15
     working_directory: ~/angularFirebase
     filters:
       branches:
-        ignore: /.*/
-        only: -main
-
+        only:
+           -main
     steps:
       - checkout
       - restore_cache:
