@@ -1,18 +1,26 @@
 version: 2
-"on":
-  push:
-    branches:
-      - main
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
 jobs:
   build:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    docker:
-      - image: circleci/node:15
-    working_directory: ~/angularFirebase
     filters:
       branches:
         only:
-           -main
+          - main
+
+    docker:
+      - image: circleci/node:15
+    working_directory: ~/angularFirebase
+
     steps:
       - checkout
       - restore_cache:
@@ -31,6 +39,20 @@ jobs:
       - run:
           name: Angular Build
           command: npm run build
+      - run:
+          name: Build end
+          command: echo 'or provide a workspace'
+  deploy:
+    filters:
+      branches:
+        only:
+          - main
+
+    docker:
+      - image: circleci/node:15
+    working_directory: ~/angularFirebase
+
+    steps:
       - run:
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
