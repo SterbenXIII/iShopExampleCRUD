@@ -12,11 +12,6 @@ workflows:
               only: main
 jobs:
   build:
-    filters:
-      branches:
-        only:
-          - main
-
     docker:
       - image: circleci/node:15
     working_directory: ~/angularFirebase
@@ -31,7 +26,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install
-      - run: npm install --save-dev firebase-tools
       - save_cache:
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
           paths:
@@ -43,11 +37,6 @@ jobs:
           name: Build end
           command: echo 'end'
   deploy:
-    filters:
-      branches:
-        only:
-          - main
-
     docker:
       - image: circleci/node:15
     working_directory: ~/angularFirebase
